@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      {% load static %}
+      <script src="{% static 'js/main.js' %}"></script>
+      {% load bootstrap4 %}
+      {% bootstrap_css %}
+    </head>
+    <body>
+        <div class="container-fluid bg-secondary" style="height:1000px">
+            <div class="container row p-5">
+                <h4 class="d-flex col-2">Your Gold:</h4>
+                <h4 class="d-flex col-2 border border-dark bg-white">{{ request.session.current_gold }}</h4>
+            </div>
+            <div class="container row mx-auto justify-content-center">
+                <div class="container col-3 row">
+                    <div class="container col-11 py-5 border border-dark bg-warning text-center">
+                        <p class="lead">Farm</p>
+                        <p>(earns 10-20 golds)</p>
+                        <form class="form" action="/process/farm" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="farm" value="farm">
+                            <button class="btn btn-dark" type="submit">Find Gold!</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="container col-3 row">
+                    <div class="container col-11 py-5 border border-dark bg-warning text-center">
+                        <p class="lead">Cave</p>
+                        <p>(earns 5-10 golds)</p>
+                        <form class="form" action="/process/cave" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="cave" value="cave">
+                            <button class="btn btn-dark" type="submit">Find Gold!</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="container col-3 row">
+                    <div class="container col-11 py-5 border border-dark bg-warning text-center">
+                        <p class="lead">House</p>
+                        <p>(earns 2-5 golds)</p>
+                        <form class="form" action="/process/house" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="house" value="house">
+                            <button class="btn btn-dark" type="submit">Find Gold!</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="container col-3 row">
+                    <div class="container col-11 py-5 border border-dark bg-warning text-center">
+                        <p class="lead">Casino</p>
+                        <p>(earns/takes 0-50 golds)</p>
+                        <form class="form" action="/process/casino" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="casino" value="casino">
+                            <button class="btn btn-dark" type="submit">Find Gold!</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="container my-5 mx-auto justify-content-center">
+                <h5>Activities:</h5>
+                <div id="action" class="container border border-dark bg-white py-2 my-3 overflow-auto" style="height:200px">
+                    {% for p in data %}
+                        <div>{{ p }}</div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+
+        {% bootstrap_javascript jquery='full' %}
+
+    </body>
+</html>

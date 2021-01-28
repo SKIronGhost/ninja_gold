@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+        {% load bootstrap4 %}
+        {% bootstrap_css %}
+    </head>
+    <body>
+        <div class="container-fluid bg-secondary pt-5" style="height:1000px">
+            <div class="jumbotron bg-warning">
+                <h1 class="display-4">PLAY NEW GAME!</h1>
+                <p class="lead text-bold">Insert limit to win</p>
+                <hr class="my-4">
+                <form class="form" action="/new_game" method="post">
+                    {% csrf_token %}
+                    <input type="text" name="win_limit" value="">
+                    <button class="btn btn-dark" type="submit">Start</button>
+                </form>
+
+            </div>
+        </div>
+
+    <script>
+
+    </script>
+        {% bootstrap_javascript jquery='full' %}
+    </body>
+</html>
